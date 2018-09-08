@@ -1,0 +1,16 @@
+body {
+    background-image: url("https://www.newcastle.edu.au/__data/assets/image/0003/330429/image0017.jpg");
+    background-position: top-right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 5%;
+}
+
+div {
+    padding: 1%;
+}
+
+a {
+    color: #00B7FF;
+}
