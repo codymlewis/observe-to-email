@@ -14,8 +14,8 @@ router.post('/observe', function(req, res, next) {
     var nodemailer = require('nodemailer');
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        console.log("Parsing form");
         var today = new Date();
+        console.log("Started creating message");
         msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
             '\\begin{center}\n\\begin{tabular}{| c | c |}\n\\hline\n' +
             '\ninterface type & ' + fields.interface +
@@ -38,6 +38,7 @@ router.post('/observe', function(req, res, next) {
             subject: 'HLA9000 - Observations: ' + today.toDateString(),
             text: msg
         };
+        console.log("Sending mail");
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
                 console.log(error);
