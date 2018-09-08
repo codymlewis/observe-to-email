@@ -14,6 +14,7 @@ router.post('/observe', function(req, res, next) {
     var nodemailer = require('nodemailer');
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        console.log("PArsing form");
         var today = new Date();
         var photo = files.photo.path;
         msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
