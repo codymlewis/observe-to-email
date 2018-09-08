@@ -14,6 +14,7 @@ router.post('/observe', function(req, res, next) {
     var nodemailer = require('nodemailer');
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
+        console.log("Parsing form");
         var today = new Date();
         msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
             '\\begin{center}\n\\begin{tabular}{| c | c |}\n\\hline\n' +
