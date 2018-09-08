@@ -20,7 +20,7 @@
   <body>
     <div class="container bg-light">
       <div class="container">
-        <h1 class="display-3 text-center">{title}</h1>
+        <h1 class="display-5 text-center">{title}</h1>
         <p>Please enter the usability observations below</p>
         <form action="/">
           <div class="form-group">
