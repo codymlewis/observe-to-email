@@ -20,12 +20,24 @@
   <body>
     <div class="container bg-light">
       <div class="container">
-        <h1 class="display-5 text-center">{title}</h1>
+        <h1 class="text-center">{title}</h1>
         <p>Please enter the usability observations below</p>
-        <form action="/">
+        <form action="/observe" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="interface">Interface type:</label>
+            <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="va" name="interface" value="virtual assistant">
+            <label for="va" class="custom-control-label">Virtual Assistant</label>
+            </div>
+            <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="cb"
+                   name="interface" value="card based (desktop-like)">
+            <label for="cb" class="custom-control-label">Card based (desktop-like)</label>
+            </div>
+          </div>
           <div class="form-group">
             <label for="time">How long did it take? (in minutes)</label>
-            <input type="number" class="form-control" id="time" class="time">
+            <input type="number" class="form-control" id="time" name="time">
           </div>
           <div class="form-group">
             <label for="expression">How did the tester seem to feel?</label>
@@ -40,13 +52,28 @@
             </select>
           </div>
           <div class="form-group">
+            <label for="tester-action">What did the tester think the system could be used for?</label>
+            <input type="text" class="form-control" id="tester-action" name="testerAction">
+          </div>
+          <div class="form-group">
             <label for="tester-comment">Tester's Comments:</label>
-            <textarea class="form-control" rows="5" id="tester-comment" name="tester-comment"></textarea>
+            <textarea class="form-control" rows="5" id="tester-comment" name="testerComment"></textarea>
           </div>
           <div class="form-group">
             <label for="other-comment">Other observations:</label>
-            <textarea class="form-control" rows="5" id="other-comment" name="other-comment"></textarea>
+            <textarea class="form-control" rows="5" id="other-comment" name="otherComment"></textarea>
           </div>
+          <p>Add a photo: </p>
+          <div class="form-group container">
+            <div class="container">
+              <input type="file" id="photo" name="photo">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="reset" class="btn btn-danger float-right">Reset</button>
+          </div>
+
         </form>
       </div>
     </div>
