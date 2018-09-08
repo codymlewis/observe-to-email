@@ -12,42 +12,42 @@ router.get('/observe', function(req, res, next) {
 
 router.post('/observe', function(req, res, next) {
     var nodemailer = require('nodemailer');
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-        var today = new Date();
-        console.log("Started creating message");
-        msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
-            '\\begin{center}\n\\begin{tabular}{| c | c |}\n\\hline\n' +
-            '\ninterface type & ' + fields.interface +
-            '\\\\\\hline\ntime taken & ' + fields.time + 'mins' +
-            '\\\\\\hline\nThe tester felt & ' + fields.expression +
-            '\\\\\\hline\nThe tester thought the system would be useful for & ' + fields.testerAction +
-            '\\\\\\hline\nThe tester commented & ' + fields.testerComment +
-            '\\\\\\hline\nOther observations & ' + fields.otherComment +
-            '\\\\\n\\hline\n\\end{tabular}\n\\end{center}';
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'seng2260efg@gmail.com',
-                pass: 'seng2260hla9000'
-            }
-        });
-        var mailOptions = {
-            from: 'seng2260efg@gmail.com',
-            to: 'seng2260efg@gmail.com',
-            subject: 'HLA9000 - Observations: ' + today.toDateString(),
-            text: msg
-        };
-        console.log("Sending mail");
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-
-        });
+    // var form = new formidable.IncomingForm();
+    // form.parse(req, function (err, req.body, files) {
+    var today = new Date();
+    console.log("Started creating message");
+    msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
+        '\\begin{center}\n\\begin{tabular}{| c | c |}\n\\hline\n' +
+        '\ninterface type & ' + req.body.interface +
+        '\\\\\\hline\ntime taken & ' + req.body.time + 'mins' +
+        '\\\\\\hline\nThe tester felt & ' + req.body.expression +
+        '\\\\\\hline\nThe tester thought the system would be useful for & ' + req.body.testerAction +
+        '\\\\\\hline\nThe tester commented & ' + req.body.testerComment +
+        '\\\\\\hline\nOther observations & ' + req.body.otherComment +
+        '\\\\\n\\hline\n\\end{tabular}\n\\end{center}';
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'seng2260efg@gmail.com',
+            pass: 'seng2260hla9000'
+        }
     });
+    var mailOptions = {
+        from: 'seng2260efg@gmail.com',
+        to: 'seng2260efg@gmail.com',
+        subject: 'HLA9000 - Observations: ' + today.toDateString(),
+        text: msg
+    };
+    console.log("Sending mail");
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+
+    });
+    // });
     res.redirect('/success');
 });
 router.get('/success', function(req, res, next) {
