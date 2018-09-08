@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var formidable = require('formidable');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,8 +11,6 @@ router.get('/observe', function(req, res, next) {
 
 router.post('/observe', function(req, res, next) {
     var nodemailer = require('nodemailer');
-    // var form = new formidable.IncomingForm();
-    // form.parse(req, function (err, req.body, files) {
     var today = new Date();
     console.log("Started creating message");
     msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
@@ -47,7 +44,6 @@ router.post('/observe', function(req, res, next) {
         }
 
     });
-    // });
     res.redirect('/success');
 });
 router.get('/success', function(req, res, next) {
