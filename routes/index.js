@@ -16,7 +16,6 @@ router.post('/observe', function(req, res, next) {
     form.parse(req, function (err, fields, files) {
         console.log("PArsing form");
         var today = new Date();
-        var photo = files.photo.path;
         msg = '\\subsubsection{Test from ' + today.toDateString() + '}\n' +
             '\\begin{center}\n\\begin{tabular}{| c | c |}\n\\hline\n' +
             '\ninterface type & ' + fields.interface +
@@ -37,11 +36,7 @@ router.post('/observe', function(req, res, next) {
             from: 'seng2260efg@gmail.com',
             to: 'seng2260efg@gmail.com',
             subject: 'HLA9000 - Observations: ' + today.toDateString(),
-            text: msg,
-            attachments: [{
-                path: photo,
-                contentType: "image/png"
-            }]
+            text: msg
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
