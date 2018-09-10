@@ -22,7 +22,7 @@
       <div class="container">
         <h1 class="text-center">{title}</h1>
         <p>Please enter the usability observations below</p>
-        <form action="/observe" method="post" enctype="multipart/form-data">
+        <form action="/observe/submit" method="get" enctype="multipart/form-data">
           <div class="form-group">
             <label for="interface">Interface type:</label>
             <div class="custom-control custom-radio">
