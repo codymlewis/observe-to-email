@@ -22,11 +22,11 @@ router.get('/observe/submit', function(req, res, next) {
         '\\\\\\hline\nOther observations & ' + req.query.otherComment +
         '\\\\\n\\hline\n\\end{tabular}\n\\end{center}';
     var subject = 'HLA9000 - Observations: ' + today.toDateString();
-    email(subject, msg);
+    email(subject, msg, 0);
     res.redirect('/success');
 });
 
-function email(subject, msg) {
+function email(subject, msg, i) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -43,6 +43,10 @@ function email(subject, msg) {
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
+            if(i < 5) {
+                console.log("Trying again");
+                email(subject, msg, i + 1);
+            }
         } else {
             console.log('Email sent: ' + info.response);
         }
